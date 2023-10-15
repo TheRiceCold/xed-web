@@ -10,6 +10,14 @@
       "StackName": "amplify-xed-dev-155837",
       "StackId": "arn:aws:cloudformation:ap-southeast-1:783138967008:stack/amplify-xed-dev-155837/7cacf6f0-6a67-11ee-9c4e-028d11a23bde",
       "AmplifyAppId": "djfvx1f3v67o5"
+    },
+    "categories": {
+      "api": {
+        "xed": {}
+      },
+      "auth": {
+        "xed3c109809": {}
+      }
     }
   }
 }
