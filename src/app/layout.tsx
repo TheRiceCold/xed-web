@@ -1,10 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import ThemeRegistry from './ThemeRegistry'
-import { Amplify } from 'aws-amplify'
-import awsConfig from '@/aws-exports'
-
-Amplify.configure({ ...awsConfig, ssr: true })
+import AppRegistry from './AppRegistry'
 
 export const metadata: Metadata = {
   title: 'Xed',
@@ -18,7 +14,7 @@ export default ({
 }) => (
   <html lang="en">
     <body>
-      <ThemeRegistry options={{ key: 'mui' }}>{children}</ThemeRegistry>
+      <AppRegistry>{children}</AppRegistry>
     </body>
   </html>
 )
