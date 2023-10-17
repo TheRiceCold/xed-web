@@ -12,7 +12,7 @@ export default ({
 }: {
   children: React.ReactNode
 }) => (
-  <html lang="en">
+  <html lang='en'>
     <body>
       <AppRegistry>{children}</AppRegistry>
     </body>
