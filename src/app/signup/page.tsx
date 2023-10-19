@@ -1,128 +1,83 @@
 'use client'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Auth } from 'aws-amplify'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { Button, TextField, Snackbar, Grid, Alert } from '@mui/material'
+import { CognitoUser } from '@aws-amplify/auth'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
-interface IFormInput {
-  username: string
-  email: string
-  password: string
-  code: string
-}
+import { Form } from '@/components'
+import { useUser } from '@/context'
+import { signupInputs as inputFields } from '@/constants'
 
 const Signup = () => {
-  const [open, setOpen] = useState(false)
-  const [showCode, setShowCode] = useState<boolean>(false)
+  const { user } = useUser()
+  const router = useRouter()
   const [signUpError, setSignUpError] = useState<string>('')
+  const [isSubmitError, setIsSubmitError] = useState<boolean>(false)
+  const [showVerificationCode, setShowVerificationCode] = useState<boolean>(false)
+  const formHook = useForm<IFormInput>()
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<IFormInput>()
-
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log('Errors: ', errors)
-    console.log(data)
-
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
-      signUpWithEmailAndPassword(data)
-    } catch (err) {
+      if (showVerificationCode) {
+        confirmSignUp(data)
+      } else {
+        await signUpWithEmailAndPassword(data)
+        setShowVerificationCode(true)
+      }
+    } catch (err: any) {
       console.error(err)
+      setSignUpError(err.message)
+      setIsSubmitError(true)
     }
   }
 
-  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
-    if (reason === "clickaway") return
-    setOpen(false)
-  }
-
-  const signUpWithEmailAndPassword = async (data: IFormInput) => {
-    const { username, password, email } = data
+  const signUpWithEmailAndPassword = async (
+    data: IFormInput
+  ): Promise<CognitoUser> => {
+    const { email, password } = data
     try {
-      const { user } = await Auth.signUp({
-        username,
-        password,
-        attributes: {
-          email
-        }
-      })
+      const { user } = await Auth.signUp({ username: email, password })
+      console.log('Signed up a user', user)
+      return user
     } catch (error) {
-      console.log('Error signing up: ', error)
+      throw error
     }
   }
+
+  const confirmSignUp = async (data: IFormInput) => {
+    const { email, password, verificationCode } = data
+    try {
+      await Auth.confirmSignUp(email, verificationCode)
+      const amplifyUser = await Auth.signIn(email, password)
+      console.log('Successs, signed in a user', amplifyUser)
+      if (amplifyUser) {
+        router.push(`/`)
+      } else {
+        throw new Error('Something went wrong :')
+      }
+    } catch (err) {
+      console.log('error confirming sign up', err)
+    }
+  }
+
+  console.log('The value of the user from the hook is:', user)
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} autoComplete='off'>
-      <Grid container direction='column' alignItems='center' justify='center'>
-        <Grid item>
-          <TextField
-            variant='outlined'
-            id='username'
-            label='Username'
-            type='text'
-            errors={errors.username ? 'true' : 'false'}
-            helperText={errors.username ? errors.username.message : null}
-            {...register('username', {
-              required: { value: true, message: 'Please enter a username' },
-              minLength: {
-                value: 3,
-                message: 'Please enter a username between 3-6 characters.'
-              },
-              maxLength: {
-                value: 16,
-                message: 'Please enter a username between 3-16 characters.'
-              }
-            })}
-          />
-        </Grid>
-
-        <Grid item>
-          <TextField
-            variant='outlined'
-            id='email'
-            label='Email'
-            type='email'
-            error={errors.email ? 'true' : 'false'}
-            helperText={errors.email ? errors.email.message : null}
-            {...register('email', {
-              required: { value: true, message: 'Please enter a valid email.' }
-            })}
-          />
-        </Grid>
-
-        <Grid item>
-          <TextField
-            variant='outlined'
-            id='password'
-            label='Password'
-            type='password'
-            error={errors.password ? 'true' : 'false'}
-            helperText={errors.password ? errors.password.message : null}
-            {...register('password', {
-              required: { value: true, message: 'Please enter a password' },
-              minLength: {
-                value: 8,
-                message: 'Please enter a stronger password'
-              }
-            })}
-          />
-        </Grid>
-
-        <Grid style={{ marginTop: 16 }}>
-          <Button variant='contained' type='submit'>
-            Sign Up
-          </Button>
-        </Grid>
-      </Grid>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="error">
-          {signUpError}
-        </Alert>
-      </Snackbar>
-    </form>
+    <Form
+      inputFields={inputFields(formHook.watch)}
+      submitLabel='Sign Up'
+      alertMessage={signUpError}
+      formHook={formHook}
+    />
   )
 }
 
 export default Signup
+
+interface IFormInput {
+  email: string
+  password: string
+  confirmPassword: string
+  verificationCode: string
+}

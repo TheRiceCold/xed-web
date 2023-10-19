@@ -11,7 +11,7 @@ import { AuthContext } from '@/context'
 
 Amplify.configure({ ...awsConfig, ssr: true })
 
-export default ({
+const AppRegistry = ({
   children
 }: {
   children: React.ReactNode
@@ -23,3 +23,5 @@ export default ({
     </ThemeProvider>
   </AuthContext>
 )
+
+export default AppRegistry
