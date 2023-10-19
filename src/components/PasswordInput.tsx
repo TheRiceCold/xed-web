@@ -7,19 +7,15 @@ import {
   Visibility,
   VisibilityOff
 } from '@mui/icons-material'
-
-interface IProps {
-  id: string
-  label: string
-  errors: any
-}
+import { inputFieldsType } from '@/types'
 
 const PasswordInput = ({
   id,
   label,
-  errors,
-  ...props
-}: IProps) => {
+  validations,
+  register,
+  errors
+}: inputFieldsType) => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
 
   const passwordIcon = () => (
@@ -36,12 +32,14 @@ const PasswordInput = ({
     <TextField
       id={id}
       label={label}
-      variant='outlined'
+      margin='normal'
+      variant='standard'
+      fullwidth
       error={!!errors[id]}
       type={showPassword ? 'text' : 'password'}
       InputProps={{ endAdornment: passwordIcon() }}
       helperText={errors[id] ? errors[id].message : null}
-      {...props}
+      {...register(id, validations)}
     />
   )
 }
