@@ -1,1 +1,1 @@
-export { default as signupInputs } from './signupInputs'
+export { default as authInputs } from './authInputs'

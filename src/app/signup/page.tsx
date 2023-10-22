@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { Form } from '@/components'
 import { useUser } from '@/context'
-import { signupInputs as inputFields } from '@/constants'
+import { authInputs } from '@/constants'
 
 const Signup = () => {
   const { user } = useUser()
@@ -50,7 +50,7 @@ const Signup = () => {
     try {
       await Auth.confirmSignUp(email, verificationCode)
       const amplifyUser = await Auth.signIn(email, password)
-      console.log('Successs, signed in a user', amplifyUser)
+      console.log('Success, signed in a user', amplifyUser)
       if (amplifyUser) {
         router.push(`/`)
       } else {
@@ -61,15 +61,51 @@ const Signup = () => {
     }
   }
 
-  console.log('The value of the user from the hook is:', user)
-
   return (
-    <Form
-      inputFields={inputFields(formHook.watch)}
-      submitLabel='Sign Up'
-      alertMessage={signUpError}
-      formHook={formHook}
-    />
+    <>
+      {showVerificationCode ? (
+        <Form 
+          inputFields={[{
+            id: 'verificationCode',
+            label: 'Verification Code',
+            validations: {
+              required: { value: true, message: 'Please enter a code.' },
+              minLength: {
+                value: 6,
+                message: 'Your verification is 6 characters long.',
+              },
+              maxLength: {
+                value: 6,
+                message: 'Your verification is 6 characters long.',
+              },
+            }
+          }]}
+          submitLabel='Confirm Code'
+          formHook={formHook}
+          onSubmit={onSubmit}
+        />
+      ) : (
+        <Form
+          inputFields={[...authInputs, {
+            id: 'confirmPassword',
+            type: 'password',
+            label: 'Confirm Password',
+            validations: {
+              required: { value: true, message: 'Please confirm password' },
+              validate: (val: string) => {
+                if (watch('password') !== val) {
+                  return 'Your passwords do no match'
+                }
+              }
+            }
+          }]}
+          submitLabel='Sign Up'
+          alertMessage={signUpError}
+          formHook={formHook}
+          onSubmit={onSubmit}
+        />
+      )}
+    </>
   )
 }
 

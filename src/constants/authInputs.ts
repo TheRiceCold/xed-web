@@ -1,6 +1,4 @@
-import { UseFormReturn } from 'react-hook-form'
-
-const signupInputs = (watch: UseFormReturn['watch']) => [
+const authInputs = [
   {  // EMAIL
     id: 'email',
     type: 'email',
@@ -27,19 +25,6 @@ const signupInputs = (watch: UseFormReturn['watch']) => [
       }
     }
   },
-  {  // CONFIRM PASSWORD
-    id: 'confirmPassword',
-    type: 'password',
-    label: 'Confirm Password',
-    validations: {
-      required: { value: true, message: 'Please confirm password' },
-      validate: (val: string) => {
-        if (watch('password') !== val) {
-          return 'Your passwords do no match'
-        }
-      }
-    }
-  }
 ]
 
-export default signupInputs
+export default authInputs
