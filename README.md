@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Xed
+A Soc Med Web App Project.
+View live production [here]()
 
-## Getting Started
+### Prerequesites using Containerization
+- [Docker](https://docs.docker.com/engine/install/) OR [Podman](https://podman.io/) & [Podman Compose](https://podman.io/) >= 1.0.6
+- [AWS Amplify CLI](https://docs.amplify.aws/cli/start/install) 
 
-First, run the development server:
-
+### Prerequesites without Containerization (Docker or Podman)
+- [Bun](https://bun.sh) >= 1.0.7 OR [Pnpm](https://pnpm.io/installation)
+- [AWS Amplify CLI](https://docs.amplify.aws/cli/start/install)
+  
+### Getting Started
+- Clone Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/kaizen-dw/Xed
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Download AWS config files here
+``https://``
+- Paste file in
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Setup project with Docker or Podman (Skip if you're not using this tools)
+  - Build and Run Image 
+  ```
+  docker-compose up --build
+  ```
+  OR
+  ```
+  podman-compose up --build
+  ```  
+   - Open ``http://localhost:3000``
+ 
+  
+  
+- Setup project with Bun
+  - Install packages
+  ```
+  bun install
+  ```
+  - Run the project
+   ```
+   bun dev
+   ```
+   - Open ``http://localhost:3000``
+ 
+ 
+### Useful Commands for Debugging
+Run bash inside container
+```
+docker-compose run -it app bash
+```
+Execute bash inside container
+```
+docker-compose exec -it app bash
+```
