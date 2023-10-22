@@ -1,6 +1,6 @@
-import './globals.css'
 import type { Metadata } from 'next'
 import AppRegistry from './AppRegistry'
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Xed',
