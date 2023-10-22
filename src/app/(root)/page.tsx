@@ -1,11 +1,12 @@
 'use client'
-import { Button } from '@/components/ui/button'
+import { Navbar } from './_components'
 
-export default function Home() {
-
+const RootPage = () => {
   return (
-    <>
-      <Button>Click me!</Button>
-    </>
+    <main className='min-h-full flex flex-col'>
+      <Navbar />
+    </main>
   )
 }
+
+export default RootPage
