@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { 
   useRouter,
   usePathname, 
@@ -8,20 +9,24 @@ import {
   Languages,
   HelpCircle,
   MoreVertical,
-  ArrowDownToLine, 
 } from 'lucide-react'
 import Link from 'next/link'
 import { 
   Button, 
-  Switch, buttonVariants, DropdownMenu,
+  Switch, 
+  DropdownMenu,
   DropdownMenuItem,
   DropdownMenuGroup,
   DropdownMenuTrigger,
   DropdownMenuContent,
 } from '@/components/ui'
 import NavSearch from './NavSearch'
+import { 
+  AuthDialog, 
+  GetAppDialog 
+} from '@/components'
 
-const Navbar = () => {
+const Navbar: FC = () => {
   const router = useRouter()
   const pathname = usePathname()
 
@@ -30,16 +35,13 @@ const Navbar = () => {
       <nav className={
         `flex items-center justify-between gap-6 w-full px-4 mx-auto ${pathname === '/' ? 'max-w-[1150px]' : ''}`
       }>
-        <Link href='/'>
-          Xed
-        </Link>
+        <Link href='/'>Xed</Link>
         <NavSearch />
 
         <div className='flex items-center gap-3'>
-          <Link href='/login' className={buttonVariants()}>Login</Link>
-          <Button variant='outline'>
-            <ArrowDownToLine className='mr-2 h-4 w-4' /> Get app
-          </Button>
+          <AuthDialog triggerComponent={() => <Button>Log In</Button>}/>
+          <GetAppDialog />
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant='outline' size='icon'>
@@ -58,8 +60,7 @@ const Navbar = () => {
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <SunMoon className='mr-2 h-4 w-4' />
-                  <span className='pr-2'>Dark Mode</span>
-                  <Switch id='dark-mode' />
+                  <span className='pr-2'>Theme</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <HelpCircle className='mr-2 h-4 w-4' />

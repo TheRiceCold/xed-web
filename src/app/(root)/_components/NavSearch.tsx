@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import Link from 'next/link'
 import { 
   Input,
@@ -6,7 +7,7 @@ import {
   AvatarFallback,
 } from '@/components/ui'
 
-const NavSearch = () => (
+const NavSearch: FC = () => (
   <div className='relative hidden md:flex items-center justify-end p-1 max-w-[430px] w-full'>
     <Input placeholder='Search...' />
     <div className='absolute bg-white max-w-[910px] h-auto w-full z-20 left-0 top-12 border p-1'>
