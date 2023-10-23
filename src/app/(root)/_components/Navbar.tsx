@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { 
   useRouter,
   usePathname, 
@@ -8,7 +9,6 @@ import {
   Languages,
   HelpCircle,
   MoreVertical,
-  ArrowDownToLine, 
 } from 'lucide-react'
 import Link from 'next/link'
 import { 
@@ -26,7 +26,7 @@ import {
   GetAppDialog 
 } from '@/components'
 
-const Navbar = () => {
+const Navbar: FC = () => {
   const router = useRouter()
   const pathname = usePathname()
 

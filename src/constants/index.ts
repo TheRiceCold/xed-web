@@ -1,1 +1,1 @@
-export { default as authInputs } from './authInputs'
+export { authDisplayEnum } from './enums/authDisplay'
