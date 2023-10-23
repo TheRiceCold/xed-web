@@ -15,5 +15,15 @@ export {
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
 } from './dropdown-menu'
+export { 
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from './tooltip'
+export { 
+  Button, 
+  buttonVariants 
+} from './button'
 export { Input } from './input'
-export { Button, buttonVariants } from './button'
+export { Switch } from './switch'
