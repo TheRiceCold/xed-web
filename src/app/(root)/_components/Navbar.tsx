@@ -39,7 +39,7 @@ const Navbar: FC = () => {
         <NavSearch />
 
         <div className='flex items-center gap-3'>
-          <AuthDialog />
+          <AuthDialog triggerComponent={() => <Button>Log In</Button>}/>
           <GetAppDialog />
 
           <DropdownMenu>
@@ -60,8 +60,7 @@ const Navbar: FC = () => {
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <SunMoon className='mr-2 h-4 w-4' />
-                  <span className='pr-2'>Dark Mode</span>
-                  <Switch id='dark-mode' />
+                  <span className='pr-2'>Theme</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <HelpCircle className='mr-2 h-4 w-4' />

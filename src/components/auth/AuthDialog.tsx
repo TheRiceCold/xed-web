@@ -1,8 +1,7 @@
 'use client'
-import { FC, useState } from 'react'
+import { FC, useState, ReactNode } from 'react'
 import { ArrowLeft } from 'lucide-react'
 import {
-  Button,
   Dialog,
   DialogContent,
   DialogTrigger,
@@ -22,7 +21,11 @@ export enum authContentEnum {
   ENTER_LOGIN_PASSWORD = 'ENTER_LOGIN_PASSWORD',
 }
 
-const AuthDialog: FC = () => {
+interface IProps {
+  triggerComponent: ReactNode
+}
+
+const AuthDialog: FC<IProps> = ({ triggerComponent }) => {
   const [email, setEmail] = useState<string>('')
   const [prevDisplay, setPrevDisplay] = useState<authContentEnum|null>(null)
   const [currentDisplay, setCurrentDisplay] = useState<authContentEnum>(authContentEnum.LOGIN)
@@ -54,9 +57,7 @@ const AuthDialog: FC = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>
-          Log In
-        </Button>
+        {triggerComponent()}
       </DialogTrigger>
       <DialogContent>
         {prevDisplay && (

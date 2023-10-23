@@ -19,7 +19,7 @@ const EnterLoginPasswordDisplay: FC<IProps> = ({ email, changeContent }) => {
 
   return (
     <>
-      <DialogHeader>
+      <DialogHeader className='mt-4'>
         <DialogTitle className='text-2xl'>Log in</DialogTitle>
       </DialogHeader>
       <div className='flex items-center space-x-2'>
@@ -38,7 +38,7 @@ const EnterLoginPasswordDisplay: FC<IProps> = ({ email, changeContent }) => {
         </div>
       </div>
       <DialogFooter className='sm:justify-normal text-sm'>
-        Don't have an account?
+        {"Don't have an account?"}
         <span 
           className='ml-2 hover:underline cursor-pointer' 
           onClick={() => changeContent(authContentEnum.SIGNUP)}

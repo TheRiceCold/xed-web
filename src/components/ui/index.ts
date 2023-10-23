@@ -37,11 +37,16 @@ export {
   FormMessage,
   FormField,
 } from './form'
-export { 
-  Avatar, 
-  AvatarImage, 
-  AvatarFallback 
-} from './avatar'
+export {
+  Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+  SelectSeparator,
+} from './select'
 export { 
   Tooltip,
   TooltipTrigger,
@@ -49,9 +54,15 @@ export {
   TooltipProvider,
 } from './tooltip'
 export { 
+  Avatar, 
+  AvatarImage, 
+  AvatarFallback 
+} from './avatar'
+export { 
   Button, 
   buttonVariants 
 } from './button'
 export { Input } from './input'
 export { Switch } from './switch'
 export { Separator } from './separator'
+
