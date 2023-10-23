@@ -11,6 +11,7 @@ import {
 import {
   LoginContent,
   SignupContent,
+  ForgotPasswordContent,
   EnterLoginPasswordContent,
 } from './contents'
 
@@ -23,7 +24,7 @@ export enum authContentEnum {
 
 const AuthDialog: FC = () => {
   const [email, setEmail] = useState<string>('')
-  const [prevDisplay, setPrevDisplay] = useState<authContentEnum>(authContentEnum.LOGIN)
+  const [prevDisplay, setPrevDisplay] = useState<authContentEnum|null>(null)
   const [currentDisplay, setCurrentDisplay] = useState<authContentEnum>(authContentEnum.LOGIN)
 
   const changeContent = (content: authContentEnum): void => {
@@ -36,11 +37,14 @@ const AuthDialog: FC = () => {
       case authContentEnum.LOGIN:
         return <LoginContent setEmail={setEmail} changeContent={changeContent} />
 
-      case authContentEnum.ENTER_LOGIN_PASSWORD:
-        return <EnterLoginPasswordContent email={email} changeContent={changeContent} />
-    
       case authContentEnum.SIGNUP: 
         return <SignupContent changeContent={changeContent} />
+
+      case authContentEnum.FORGOT_PASSWORD: 
+        return <ForgotPasswordContent changeContent={changeContent} />
+
+      case authContentEnum.ENTER_LOGIN_PASSWORD:
+        return <EnterLoginPasswordContent email={email} changeContent={changeContent} />
 
       default:
         return null
@@ -56,13 +60,12 @@ const AuthDialog: FC = () => {
       </DialogTrigger>
       <DialogContent>
         {prevDisplay && (
-          <Button 
-            variant='ghost' 
-            className='absolute top-2 left-2 w-8 h-8'
+          <button
+            className='absolute top-2 left-4 w-4 h-4'
             onClick={() => setCurrentDisplay(prevDisplay && prevDisplay)}
           >
             <ArrowLeft className='absolute w-4 h-4'/>
-          </Button>
+          </button>
         )}
         {renderContent()}
       </DialogContent>

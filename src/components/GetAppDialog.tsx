@@ -1,5 +1,8 @@
+import Link from 'next/link'
+import Image from 'next/image'
+import { ArrowDownToLine } from 'lucide-react'
+
 import {
-  Input,
   Button,
   Dialog,
   DialogTrigger,
@@ -9,10 +12,8 @@ import {
   DialogDescription,
   DialogFooter,
   DialogClose,
-  buttonVariants
 } from '@/components/ui'
-import Link from 'next/link'
-import { ArrowDownToLine } from 'lucide-react'
+import { appleAppStore, googlePlayStore } from '@/constants/images'
 
 const AuthDialog = () => {
 
@@ -25,24 +26,25 @@ const AuthDialog = () => {
       </DialogTrigger>
       <DialogContent className='sm:max-w-md'>
         <DialogHeader>
-          <DialogTitle>Get Xed App</DialogTitle>
+          <DialogTitle className='text-2xl'>Get Xed App</DialogTitle>
           <DialogDescription>
-            Download our application
+            Download and install our application.
           </DialogDescription>
         </DialogHeader>
         <div className='flex items-center space-x-2'>
-          <div className='grid flex-1 gap-4'>
-            <Button variant='link'>Google Play Store</Button>
-          </div>
-          <div className='grid flex-1 gap-4'>
-            <Button variant='link'>App Store</Button>
-          </div>
+          <Link href='/' className='grid flex-1 gap-4'>
+            <Image 
+              alt='Apple App Store'
+              src={appleAppStore}
+            />
+          </Link>
+          <Link href='/' className='grid flex-1 gap-4'>
+            <Image 
+              alt='Google Play Store'
+              src={googlePlayStore}
+            />
+          </Link>
         </div>
-        <DialogFooter className='sm:justify-end'>
-          <DialogClose asChild>
-            <Button>Download</Button>
-          </DialogClose>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   )
