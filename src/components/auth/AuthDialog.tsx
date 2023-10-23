@@ -10,7 +10,7 @@ import {
 import {
   LoginContent,
   SignupContent,
-  ForgotPasswordContent,
+  ResetPasswordContent,
   EnterLoginPasswordContent,
 } from './contents'
 
@@ -44,7 +44,7 @@ const AuthDialog: FC<IProps> = ({ triggerComponent }) => {
         return <SignupContent changeContent={changeContent} />
 
       case authContentEnum.FORGOT_PASSWORD: 
-        return <ForgotPasswordContent changeContent={changeContent} />
+        return <ResetPasswordContent changeContent={changeContent} />
 
       case authContentEnum.ENTER_LOGIN_PASSWORD:
         return <EnterLoginPasswordContent email={email} changeContent={changeContent} />

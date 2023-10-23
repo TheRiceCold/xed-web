@@ -5,20 +5,12 @@ import { Eye, EyeOff } from 'lucide-react'
 import {
   Input,
   Button,
+  Separator,
+
   DialogHeader,
   DialogTitle,
   DialogFooter,
   DialogDescription,
-
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-
-  Separator
 } from '@/components/ui'
 import { authContentEnum } from '../AuthDialog'
 import BirthdaySelect from './BirthdaySelect.tsx'
