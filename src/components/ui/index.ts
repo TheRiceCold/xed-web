@@ -32,3 +32,15 @@ export {
 } from './button'
 export { Input } from './input'
 export { Switch } from './switch'
+export {
+  Dialog,
+  DialogPortal,
+  DialogOverlay,
+  DialogClose,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+} from './dialog'
