@@ -27,26 +27,20 @@ const AuthDialog = () => {
         <DialogHeader>
           <DialogTitle>Get Xed App</DialogTitle>
           <DialogDescription>
-            By continuing, you agree to our 
-            <Link href='/' className={buttonVariants({ variant: 'link' })}>
-              User Agreement
-            </Link> and acknowledge 
-            that you understand the 
-            <Link href='/' className={buttonVariants({ variant: 'link' })}>
-              Privacy Policy.
-            </Link>
+            Download our application
           </DialogDescription>
         </DialogHeader>
         <div className='flex items-center space-x-2'>
           <div className='grid flex-1 gap-4'>
-            <Button variant='link'>Forgot Password</Button>
+            <Button variant='link'>Google Play Store</Button>
+          </div>
+          <div className='grid flex-1 gap-4'>
+            <Button variant='link'>App Store</Button>
           </div>
         </div>
         <DialogFooter className='sm:justify-end'>
-          Don't have an account? 
-          <Button variant='link'>Sign up</Button>
           <DialogClose asChild>
-            <Button>Login</Button>
+            <Button>Download</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
