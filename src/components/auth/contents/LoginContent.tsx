@@ -12,25 +12,20 @@ import {
 import {
   Input,
   Button,
-  DialogContent,
   DialogHeader, DialogTitle,
   DialogDescription,
   DialogFooter,
 } from '@/components/ui'
-import { authDisplayEnum } from '@/constants'
+import { authContentEnum } from '../AuthDialog'
 
 interface IProps {
   setEmail: Dispatch<SetStateAction<string>>
-  setCurrentDisplay: Dispatch<SetStateAction<authDisplayEnum>>
+  changeContent: (content: authContentEnum) => void
 }
 
-const LoginDisplay: FC<IProps> = ({ 
-  setEmail,
-  setCurrentDisplay 
-}) => {
-
+const LoginDisplay: FC<IProps> = ({ setEmail, changeContent }) => {
   return (
-    <DialogContent className='sm:max-w-md'>
+    <>
       <DialogHeader>
         {/* <DialogDescription> */}
           {/* {'By continuing, you agree to our '} */}
@@ -66,11 +61,11 @@ const LoginDisplay: FC<IProps> = ({
               setEmail(target.value);
             }}
           />
-          <Button onClick={() => setCurrentDisplay(authDisplayEnum.ENTER_LOGIN_PASSWORD)}>
+          <Button onClick={() => changeContent(authContentEnum.ENTER_LOGIN_PASSWORD)}>
             Continue 
             <ArrowRight className='h-4 w-4 ml-2'/>
           </Button>
-          <Button variant='link' onClick={() => setCurrentDisplay(authDisplayEnum.FORGOT_PASSWORD)}>
+          <Button variant='link' onClick={() => changeContent(authContentEnum.FORGOT_PASSWORD)}>
             Forgot Password?
           </Button>
         </div>
@@ -78,15 +73,15 @@ const LoginDisplay: FC<IProps> = ({
       <DialogFooter className='sm:justify-normal text-sm'>
         Don't have an account?
         <span 
+          onClick={() => changeContent(authContentEnum.SIGNUP)}
           className='ml-2 hover:underline cursor-pointer' 
-          onClick={() => setCurrentDisplay(authDisplayEnum.SIGNUP)}
         > Sign up
         </span>
         {/* <DialogClose asChild> */}
         {/*   <Button>Login</Button> */}
         {/* </DialogClose> */}
       </DialogFooter>
-    </DialogContent>
+    </>
   )
 }
 

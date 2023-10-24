@@ -1,32 +1,24 @@
-import { 
-  FC, 
-  Dispatch, 
-  SetStateAction 
-} from 'react'
+import { FC } from 'react'
 import { ArrowRight } from 'lucide-react'
 
 import {
   Input,
   Button,
-  DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
 } from '@/components/ui'
-import { authDisplayEnum } from '@/constants'
+import { authContentEnum } from '../AuthDialog'
 
 interface IProps {
   email: string
-  setCurrentDisplay: Dispatch<SetStateAction<authDisplayEnum>>
+  changeContent: (content: authContentEnum) => void
 }
 
-const EnterLoginPasswordDisplay: FC<IProps> = ({ 
-  email,
-  setCurrentDisplay
-}) => {
+const EnterLoginPasswordDisplay: FC<IProps> = ({ email, changeContent }) => {
 
   return (
-    <DialogContent className='sm:max-w-md'>
+    <>
       <DialogHeader>
         <DialogTitle className='text-2xl'>Log in</DialogTitle>
       </DialogHeader>
@@ -34,13 +26,13 @@ const EnterLoginPasswordDisplay: FC<IProps> = ({
         <div className='grid flex-1 gap-4'>
           <Input type='email' placeholder={email} readOnly />
           <Input type='password' placeholder='Password' />
-          <Button onClick={() => setCurrentDisplay(authDisplayEnum.ENTER_LOGIN_PASSWORD)}>
+          <Button onClick={() => changeContent(authContentEnum.ENTER_LOGIN_PASSWORD)}>
             Log in
             <ArrowRight className='h-4 w-4 ml-2'/>
           </Button>
           <Button 
             variant='link' 
-            onClick={() => setCurrentDisplay(authDisplayEnum.FORGOT_PASSWORD)}
+            onClick={() => changeContent(authContentEnum.FORGOT_PASSWORD)}
           > Forgot Password?
           </Button>
         </div>
@@ -49,11 +41,11 @@ const EnterLoginPasswordDisplay: FC<IProps> = ({
         Don't have an account?
         <span 
           className='ml-2 hover:underline cursor-pointer' 
-          onClick={() => setCurrentDisplay(authDisplayEnum.SIGNUP)}
+          onClick={() => changeContent(authContentEnum.SIGNUP)}
         > Sign up
         </span>
       </DialogFooter>
-    </DialogContent>
+    </>
   )
 }
 
