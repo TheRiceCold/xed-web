@@ -5,6 +5,7 @@ import {
   SyntheticEvent, 
 } from 'react'
 import { ArrowRight } from 'lucide-react'
+import { Auth } from 'aws-amplify'
 import Image from 'next/image'
 
 import {
@@ -15,8 +16,11 @@ import {
   DialogDescription,
   DialogFooter,
 } from '@/components/ui'
+import { 
+  gmailIcon, 
+  facebookIcon 
+} from '@/constants/images'
 import { authContentEnum } from '../AuthDialog'
-import { gmailIcon, appleIcon } from '@/constants/images'
 
 interface IProps {
   setEmail: Dispatch<SetStateAction<string>>
@@ -34,19 +38,25 @@ const LoginDisplay: FC<IProps> = ({ setEmail, changeContent }) => {
       </DialogDescription>
       <div className='flex items-center space-x-2'>
         <div className='grid flex-1 gap-4'>
-          <Button variant='outline'>
+          <Button 
+            variant='outline'
+            onClick={() => Auth.federatedSignIn({ provider: "Google" })}
+          >
             <Image 
-              alt='gmail icon'
               src={gmailIcon}
+              alt='gmail icon'
               className='mr-2 h-4 w-4'
             /> Login with Gmail
           </Button>
-          <Button variant='outline'>
+          <Button 
+            variant='outline'
+            onClick={() => Auth.federatedSignIn({ provider: "Facebook" })}
+          >
             <Image 
-              alt='apple icon'
-              src={appleIcon}
+              src={facebookIcon}
+              alt='facebook icon'
               className='mr-2 h-4 w-4'
-            /> Login with Apple
+            /> Login with Facebook
           </Button>
           <span className='flex justify-center'>
             OR
