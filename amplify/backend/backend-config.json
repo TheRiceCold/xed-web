@@ -1,26 +1,6 @@
 {
-  "api": {
-    "xed": {
-      "dependsOn": [],
-      "output": {
-        "authConfig": {
-          "additionalAuthenticationProviders": [],
-          "defaultAuthentication": {
-            "apiKeyConfig": {
-              "apiKeyExpirationDate": "2024-10-12T08:18:56.405Z",
-              "apiKeyExpirationDays": 364,
-              "description": "Cool API Key"
-            },
-            "authenticationType": "API_KEY"
-          }
-        }
-      },
-      "providerPlugin": "awscloudformation",
-      "service": "AppSync"
-    }
-  },
   "auth": {
-    "xed3c109809": {
+    "xed1ce93dc3": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -35,7 +15,10 @@
         "signupAttributes": [
           "EMAIL"
         ],
-        "socialProviders": [],
+        "socialProviders": [
+          "FACEBOOK",
+          "GOOGLE"
+        ],
         "usernameAttributes": [
           "EMAIL"
         ],
