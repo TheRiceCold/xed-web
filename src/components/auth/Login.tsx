@@ -1,33 +1,40 @@
 import {
   FC, 
+  useState,
   Dispatch, 
   SetStateAction,
   SyntheticEvent, 
 } from 'react'
-import { ArrowRight } from 'lucide-react'
-import { Auth } from 'aws-amplify'
 import Image from 'next/image'
+import { Auth } from 'aws-amplify'
+import { ArrowRight } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
 import {
   Input,
   Button,
   DialogHeader, 
   DialogTitle,
-  DialogDescription,
   DialogFooter,
-} from '@/components/ui'
-import { 
-  gmailIcon, 
-  facebookIcon 
-} from '@/constants/images'
-import { authContentEnum } from '../AuthDialog'
+  DialogDescription,
+} from '@/components/shadcn-ui'
+import { authStateEnum } from './AuthDialog'
+import { loginSchema } from '@/constants/zodSchemas'
+import { gmailIcon, facebookIcon } from '@/constants/images'
 
 interface IProps {
   setEmail: Dispatch<SetStateAction<string>>
-  changeContent: (content: authContentEnum) => void
+  changeState: (state: authStateEnum) => void
 }
 
-const LoginDisplay: FC<IProps> = ({ setEmail, changeContent }) => {
+interface IFormInput {
+  email: string, 
+  password: string
+}
+
+const Login: FC<IProps> = ({ setEmail, changeState }) => {
+
   return (
     <>
       <DialogHeader className='mt-4'>
@@ -70,11 +77,11 @@ const LoginDisplay: FC<IProps> = ({ setEmail, changeContent }) => {
               setEmail(target.value);
             }}
           />
-          <Button onClick={() => changeContent(authContentEnum.ENTER_LOGIN_PASSWORD)}>
+          <Button onClick={() => changeState(authStateEnum.ENTER_LOGIN_PASSWORD)}>
             Continue 
             <ArrowRight className='h-4 w-4 ml-2'/>
           </Button>
-          <Button variant='link' onClick={() => changeContent(authContentEnum.FORGOT_PASSWORD)}>
+          <Button variant='link' onClick={() => changeState(authStateEnum.FORGOT_PASSWORD)}>
             Forgot Password?
           </Button>
         </div>
@@ -83,7 +90,7 @@ const LoginDisplay: FC<IProps> = ({ setEmail, changeContent }) => {
         {"Don't have an account?"}
         <span 
           className='ml-2 hover:underline cursor-pointer' 
-          onClick={() => changeContent(authContentEnum.SIGNUP)}
+          onClick={() => changeState(authStateEnum.SIGNUP)}
         > Sign up
         </span>
       </DialogFooter>
@@ -91,4 +98,4 @@ const LoginDisplay: FC<IProps> = ({ setEmail, changeContent }) => {
   )
 }
 
-export default LoginDisplay
+export default Login

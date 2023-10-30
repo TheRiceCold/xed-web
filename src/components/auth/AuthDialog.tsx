@@ -5,16 +5,15 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
-} from '@/components/ui'
+} from '@/components/shadcn-ui'
 
-import {
-  LoginContent,
-  SignupContent,
-  ResetPasswordContent,
-  EnterLoginPasswordContent,
-} from './contents'
+// Auth State Components
+import Login from './Login'
+import SignUp from './SignUp'
+import ResetPassword from './ResetPassword'
+import EnterLoginPassword from './EnterLoginPassword'
 
-export enum authContentEnum {
+export enum authStateEnum {
   LOGIN = 'LOGIN',
   SIGNUP = 'SIGNUP',
   FORGOT_PASSWORD = 'FORGOT_PASSWORD',
@@ -27,27 +26,29 @@ interface IProps {
 
 const AuthDialog: FC<IProps> = ({ triggerComponent }) => {
   const [email, setEmail] = useState<string>('')
-  const [prevDisplay, setPrevDisplay] = useState<authContentEnum|null>(null)
-  const [currentDisplay, setCurrentDisplay] = useState<authContentEnum>(authContentEnum.LOGIN)
+  const [prevState, setPrevState] = useState<authStateEnum|null>(null)
+  const [currentState, setCurrentState] = useState<authStateEnum>(authStateEnum.LOGIN)
 
-  const changeContent = (content: authContentEnum): void => {
-    setPrevDisplay(currentDisplay)
-    setCurrentDisplay(content)
+  const changeState = (state: authStateEnum): void => {
+    setPrevState(currentState)
+    setCurrentState(state)
   }
 
-  const renderContent = () => {
-    switch (currentDisplay) {
-      case authContentEnum.LOGIN:
-        return <LoginContent setEmail={setEmail} changeContent={changeContent} />
+  const renderState = () => {
+    const props = { changeState };
 
-      case authContentEnum.SIGNUP: 
-        return <SignupContent changeContent={changeContent} />
+    switch (currentState) {
+      case authStateEnum.LOGIN:
+        return <Login setEmail={setEmail} {...props} />
 
-      case authContentEnum.FORGOT_PASSWORD: 
-        return <ResetPasswordContent changeContent={changeContent} />
+      case authStateEnum.SIGNUP: 
+        return <SignUp {...props} />
 
-      case authContentEnum.ENTER_LOGIN_PASSWORD:
-        return <EnterLoginPasswordContent email={email} changeContent={changeContent} />
+      case authStateEnum.FORGOT_PASSWORD: 
+        return <ResetPassword {...props} />
+
+      case authStateEnum.ENTER_LOGIN_PASSWORD:
+        return <EnterLoginPassword email={email} {...props} />
 
       default:
         return null
@@ -60,15 +61,15 @@ const AuthDialog: FC<IProps> = ({ triggerComponent }) => {
         {triggerComponent()}
       </DialogTrigger>
       <DialogContent>
-        {prevDisplay && (
+        {prevState && (
           <button
             className='absolute top-2 left-4 w-4 h-4'
-            onClick={() => setCurrentDisplay(prevDisplay && prevDisplay)}
+            onClick={() => setCurrentState(prevState && prevState)}
           >
             <ArrowLeft className='absolute w-4 h-4'/>
           </button>
         )}
-        {renderContent()}
+        {renderState()}
       </DialogContent>
     </Dialog>
   )

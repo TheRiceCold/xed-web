@@ -5,7 +5,7 @@ import {
   Avatar, 
   AvatarImage, 
   AvatarFallback,
-} from '@/components/ui'
+} from '@/components/shadcn-ui'
 
 const NavSearch: FC = () => (
   <div className='relative hidden md:flex items-center justify-end p-1 max-w-[430px] w-full'>

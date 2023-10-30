@@ -1,112 +1,98 @@
 'use client'
 import {
+  FC,
   useState,
   Dispatch,
   SetStateAction
 } from 'react'
-import {
-  Grid,
-  Alert,
-  Button,
-  Snackbar,
-} from '@mui/material'
 import { UseFormReturn } from 'react-hook-form'
+import {
+  Form,
+  FormItem,
+  FormField,
+  FormControl,
+  FormMessage,
 
-import { inputFieldsType } from '@/types'
-import TextInput from './TextInput'
-import PasswordInput from './PasswordInput'
+  Input,
+  Button,
+  Separator,
+} from '@/components/shadcn-ui'
+import DateSelect from './DateSelect'
 
-const Form = ({
-  inputFields,
-  onSubmit,
+const MyForm: FC = ({
   formHook,
-  alertMessage,
-  submitLabel
-}: IProps) => {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit
-  } = formHook
-  const [showAlert, setShowAlert] = useState<boolean>(false)
-
+  onSubmit,
+  inputFields,
+  submitLabel,
+}) => {
   const handleCloseAlert = (event?: React.SyntheticEvent, reason?: string) => {
     if (reason === 'clickaway') return
     setShowAlert(false)
   }
 
-  const inputType = (input: inputFieldsType) => {
+  const renderInputType = (input) => {
     switch (input.type) {
+      case 'separator':
+        return <Separator />
       case 'password':
-        return (
-          <PasswordInput
-            register={register}
-            errors={errors}
-            {...input}
-          />
-        )
+        return <Input type={input.type} placeholder={input.label} />
+      case 'date':
+        return <DateSelect label={input.label} />
       case 'tel':
       // return <PhoneInput {...props} />
       case 'select':
-      // return <SelectInput {...props} />
+        return (
+          <SelectInput 
+            register={register}
+            {...props} 
+          />
+        )
       case 'radio':
-      // return <RadioGroup {...props} />
+        return <div className='text-sm'>{input.label}</div>
       case 'textarea':
       // return <TextArea {...props} />
       case 'image':
       // return <ImageUpload {...props} />
       default:
-        return (
-          <TextInput
-            register={register}
-            errors={errors}
-            {...input}
-          />
-        )
+        return <Input type={input.type} placeholder={input.label} />
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} autoComplete='off'>
-      <Grid container direction='column' alignItems='center' justify='center'>
-        {inputFields.map((input: inputFieldsType, idx: number) => (
-          <Grid item key={`${input.id}-${idx}`} width={350}>
-            {inputType(input)}
-          </Grid>
-        ))}
-
-        <Grid style={{ marginTop: 16 }}>
-          <Button variant='contained' type='submit'>
-            {submitLabel}
-          </Button>
-        </Grid>
-      </Grid>
-      <Snackbar
-        open={showAlert}
-        autoHideDuration={6000}
-        onClose={handleCloseAlert}
-      >
-        <Alert onClose={handleCloseAlert} severity='error'>
-          {alertMessage}
-        </Alert>
-      </Snackbar>
-    </form>
+    <Form {...formHook}>
+      <form onSubmit={formHook.handleSubmit(onSubmit)} className='space-y-4'>
+        {inputFields.map((input, idx) => !!input.id ? (
+          <FormField
+            key={`${input.id}-${input.type}-${idx}`}
+            control={formHook.control}
+            name={input.id}
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  {renderInputType(input)}
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ) : (
+            <div key={`${input.type}-${idx}`}> 
+              {renderInputType(input)}
+            </div>
+          )
+        )}
+        <Button>{submitLabel}</Button>
+      </form>
+    </Form>
   )
 }
 
-export default Form
+export default MyForm
 
-interface IFormInput {
-  email: string
-  password: string
-  confirmPassword: string
-  verificationCode: string
-}
-
-interface IProps {
-  inputFields: Array<inputFieldsType>
-  onSubmit: () => void
-  formHook: UseFormReturn<IFormInput>
-  alertMessage: string
-  submitLabel: string
-}
+// interface IProps {
+//   inputFields: Array<inputFieldsType>
+//   onSubmit: () => void
+//   formHook: UseFormReturn<IFormInput>
+//   alertMessage: string
+//   submitLabel: string
+// }

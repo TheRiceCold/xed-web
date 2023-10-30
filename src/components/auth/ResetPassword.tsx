@@ -6,19 +6,21 @@ import {
   DialogHeader,
   DialogDescription,
   DialogFooter,
-} from '@/components/ui'
+} from '@/components/shadcn-ui'
 import { Eye, EyeOff } from 'lucide-react'
-import { authContentEnum } from '../AuthDialog'
+import { authStateEnum } from './AuthDialog'
 
 interface IProps {
-  changeContent: (content: authContentEnum) => void
+  changeState: (state: authStateEnum) => void
 }
 
-const ForgotPasswordContent: FC<IProps> = ({ changeContent }) => {
+const ForgotPassword: FC<IProps> = ({ changeState }) => {
   return (
     <>
       <DialogHeader className='mt-4'>
-        <DialogTitle className='text-2xl'>Reset Password</DialogTitle>
+        <DialogTitle className='text-2xl'>
+          Reset Password
+        </DialogTitle>
         <DialogDescription>
           {"Tell us the email address associated with your account, and we’ll send you an email with a link to reset your password."}
         </DialogDescription>
@@ -44,4 +46,4 @@ const ForgotPasswordContent: FC<IProps> = ({ changeContent }) => {
   )
 }
 
-export default ForgotPasswordContent
+export default ForgotPassword

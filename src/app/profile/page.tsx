@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { Auth } from 'aws-amplify'
 import {
   Button
-} from '@/components/ui'
+} from '@/components/shadcn-ui'
 
 const Profile = () => {
   useEffect(() => {

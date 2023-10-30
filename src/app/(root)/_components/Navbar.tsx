@@ -3,6 +3,7 @@ import {
   useRouter,
   usePathname, 
 } from 'next/navigation'
+import Link from 'next/link'
 import { 
   LogIn,
   SunMoon,
@@ -10,7 +11,10 @@ import {
   HelpCircle,
   MoreVertical,
 } from 'lucide-react'
-import Link from 'next/link'
+import { 
+  AuthDialog, 
+  GetAppDialog 
+} from '@/components'
 import { 
   Button, 
   Switch, 
@@ -19,12 +23,8 @@ import {
   DropdownMenuGroup,
   DropdownMenuTrigger,
   DropdownMenuContent,
-} from '@/components/ui'
+} from '@/components/shadcn-ui'
 import NavSearch from './NavSearch'
-import { 
-  AuthDialog, 
-  GetAppDialog 
-} from '@/components'
 
 const Navbar: FC = () => {
   const router = useRouter()

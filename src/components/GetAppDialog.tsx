@@ -12,7 +12,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogClose,
-} from '@/components/ui'
+} from '@/components/shadcn-ui'
 import { appleAppStore, googlePlayStore } from '@/constants/images'
 
 const AuthDialog = () => {

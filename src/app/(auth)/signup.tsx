@@ -15,7 +15,7 @@ const Signup = () => {
   const [signUpError, setSignUpError] = useState<string>('')
   const [isSubmitError, setIsSubmitError] = useState<boolean>(false)
   const [showVerificationCode, setShowVerificationCode] = useState<boolean>(false)
-  const formHook = useForm<IFormInput>()
+  const formHook = useForm<z.infer<IFormInput>>()
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
