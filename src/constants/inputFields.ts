@@ -14,7 +14,7 @@ export const signUpFields = [
     label: 'Password',
   },
   { //  CONFIRM PASSWORD
-    id: 'confirm-password',
+    id: 'confirmPassword',
     type: 'password',
     label: 'Confirm Password',
   },

@@ -28,16 +28,6 @@ export {
   DialogDescription,
 } from './dialog'
 export {
-  useFormField,
-  Form,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormDescription,
-  FormMessage,
-  FormField,
-} from './form'
-export {
   Select,
   SelectGroup,
   SelectValue,
@@ -47,12 +37,16 @@ export {
   SelectItem,
   SelectSeparator,
 } from './select'
-export { 
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TooltipProvider,
-} from './tooltip'
+export {
+  useFormField,
+  Form,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField,
+} from './form'
 export { 
   Avatar, 
   AvatarImage, 
@@ -63,5 +57,6 @@ export {
   buttonVariants 
 } from './button'
 export { Input } from './input'
-export { Switch } from './switch'
+export { Label } from './label'
 export { Separator } from './separator'
+export { RadioGroup, RadioGroupItem } from './radio-group'

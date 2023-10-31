@@ -18,6 +18,7 @@ import {
   Separator,
 } from '@/components/shadcn-ui'
 import DateSelect from './DateSelect'
+import RadioInput from './RadioInput'
 
 const MyForm: FC = ({
   formHook,
@@ -25,11 +26,6 @@ const MyForm: FC = ({
   inputFields,
   submitLabel,
 }) => {
-  const handleCloseAlert = (event?: React.SyntheticEvent, reason?: string) => {
-    if (reason === 'clickaway') return
-    setShowAlert(false)
-  }
-
   const renderInputType = (input) => {
     switch (input.type) {
       case 'separator':
@@ -37,18 +33,19 @@ const MyForm: FC = ({
       case 'password':
         return <Input type={input.type} placeholder={input.label} />
       case 'date':
-        return <DateSelect label={input.label} />
+        return (
+          <DateSelect 
+            label='Birthday'
+            minAge={8}
+            maxAge={100}
+          />
+        )
       case 'tel':
       // return <PhoneInput {...props} />
       case 'select':
-        return (
-          <SelectInput 
-            register={register}
-            {...props} 
-          />
-        )
+        return null
       case 'radio':
-        return <div className='text-sm'>{input.label}</div>
+        return <RadioInput label={input.label} />
       case 'textarea':
       // return <TextArea {...props} />
       case 'image':
@@ -81,18 +78,11 @@ const MyForm: FC = ({
             </div>
           )
         )}
-        <Button>{submitLabel}</Button>
+        <div className='space-y-8' />
+        <Button className='w-full text-base'>{submitLabel}</Button>
       </form>
     </Form>
   )
 }
 
 export default MyForm
-
-// interface IProps {
-//   inputFields: Array<inputFieldsType>
-//   onSubmit: () => void
-//   formHook: UseFormReturn<IFormInput>
-//   alertMessage: string
-//   submitLabel: string
-// }

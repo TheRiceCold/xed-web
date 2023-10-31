@@ -85,7 +85,7 @@ const SignUp: FC<IProps> = ({ changeState }) => {
   return (
     <>
       <DialogHeader className='mt-4'>
-        <DialogTitle className='text-2xl'>Sign up</DialogTitle>
+        <DialogTitle className='text-2xl'>Sign Up</DialogTitle>
         <DialogDescription>
           {'Sign up to see photos and videos from your friends.'}
         </DialogDescription>
@@ -94,7 +94,7 @@ const SignUp: FC<IProps> = ({ changeState }) => {
         formHook={formHook}
         onSubmit={onSubmit}
         inputFields={signUpFields}
-        submitLabel={showVerificationCode ? 'Verify Code' : 'Sign Up'}
+        submitLabel={showVerificationCode ? 'Verify Code' : 'Sign up'}
       />
       <div className='flex items-center space-x-2'>
         <DialogDescription>
