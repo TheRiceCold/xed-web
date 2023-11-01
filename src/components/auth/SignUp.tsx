@@ -16,7 +16,7 @@ import { authStateEnum } from './AuthDialog'
 import { signUpSchema } from '@/constants/zodSchemas'
 import { signUpFields } from '@/constants/inputFields'
 import { SignUpSchema } from '@/constants/formSchemas'
-import MyForm from '../Form'
+import MyForm from '../form/Form'
 
 interface IProps {
   changeState: (state: authStateEnum) => void

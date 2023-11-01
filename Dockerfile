@@ -11,4 +11,4 @@ COPY amplify ./amplify
 COPY amplify ./amplify
 COPY .eslintrc.json next.config.js postcss.config.js tailwind.config.ts tsconfig.json ./
 
-CMD ["bun", "dev"]
+CMD ["bun", "--bun", "run", "dev"]
