@@ -10,7 +10,10 @@ const ConversationLayout = ({ children }: {
       <div className='h-full'>
         <ConversationList
           initialItems={[
-
+            {
+              id: '1',
+              name: 'Name 1'
+            }
           ]}
         />
         {children}
