@@ -1,2 +1,3 @@
-export { default as GetAppDialog } from './GetAppDialog'
-export { default as AuthDialog } from './auth/AuthDialog'
+export { default as ScrollButton } from './ScrollButton'
+export { default as ChatBox } from './ChatBox'
+export { default as Dialog } from './Dialog'
