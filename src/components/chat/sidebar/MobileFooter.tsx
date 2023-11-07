@@ -1,9 +1,9 @@
 'use client'
 import MobileItem from './MobileItem'
-import { useRoutes, useConversation } from '@/hooks'
+import { useConversation } from '@/hooks'
+import { CHAT_SIDEBAR_ITEMS } from '@/constants/chatSidebarItems'
 
 const MobileFooter = () => {
-  const routes = useRoutes()
   const { isOpen } = useConversation()
 
   if (isOpen) {
@@ -19,17 +19,16 @@ const MobileFooter = () => {
       z-40
       flex
       items-center
-      bg-white
       border-t-[1px]
       lg:hidden
     '>
-      {routes.map(route => (
+      {CHAT_SIDEBAR_ITEMS.map(item => (
         <MobileItem 
-          key={route.href}
-          href={route.href}
-          active={route.active}
-          icon={route.icon}
-          onClick={route.onClick}
+          key={item.href}
+          href={item.href}
+          active={item.active}
+          icon={item.icon}
+          onClick={item.onClick}
         />
       ))}
     </div>

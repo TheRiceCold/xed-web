@@ -3,7 +3,12 @@ import { useRouter } from 'next/navigation'
 import { format } from 'date-fns'
 
 import clsx from 'clsx'
-import Avatar from '@/components/chat/ChatAvatar'
+import {
+  Button,
+  Avatar, 
+  AvatarImage, 
+  AvatarFallback,
+} from '@/components/shadcn-ui'
 
 const ConversationBox: FC = ({ data, selected }) => {
   const router = useRouter()
@@ -12,7 +17,7 @@ const ConversationBox: FC = ({ data, selected }) => {
   }
 
   const handleClick = useCallback(() => {
-    router.push(`/chat/conversations/${data.id}`)
+    router.push(`/chat/${data.id}`)
   }, [data.id, router])
 
   const lastMessage = useMemo(() => {
@@ -52,41 +57,46 @@ const ConversationBox: FC = ({ data, selected }) => {
   }, [lastMessage])
 
   return (
-    <div className={clsx(`
-      w-full
-      relative
-      flex
-      items-center
-      p-3
-      space-x-3
-      hover:bg-neutral-100
-      rounded-lg
-      transition
-      cursor-pointer
-    `)} onClick={handleClick} 
+    <Button 
+      size={1}
+      variant='ghost'
+      className={clsx(`
+        h-12
+        flex
+        w-full
+        space-x-3
+        items-center
+        justify-center
+      `)} onClick={handleClick} 
     >
-      <Avatar />
+      <div className='ml-4 relative'>
+        <Avatar className='h-9 w-9'>
+          <AvatarImage src='https://github.com/shadcn.png' alt='@wolly' />
+          <AvatarFallback>DW</AvatarFallback>
+        </Avatar>
+        <span className="
+          block 
+          absolute 
+          rounded-sm
+          bg-green-500
+          top-0 
+          right-0
+          h-2.5
+          w-2.5
+          ring-1
+          ring-background 
+        "/>
+      </div>
       <div className='min-w-0 flex-1'>
         <div className='focus:outline-none'>
           <div className='flex justify-between items-center mb-1'>
-            <p className='text-md font-medium text-gray-900'>
+            <p className='text-md font-bold'>
               {data.name || otherUser.name}
             </p>
-            {lastMessage?.createdAt && (
-              <p className='text-xs text-gray-400 font-light'>
-                {format(new Date(lastMessage.createdAt), 'p')}
-              </p>
-            )}
           </div>
-          <p className={clsx(
-            'truncate text-sm',
-            hasSeen ? 'text-gray-500' : 'text-black font-medium'
-          )}>
-            {lastMessageText}
-          </p>
         </div>
       </div>
-    </div>
+    </Button>
   )
 }
 

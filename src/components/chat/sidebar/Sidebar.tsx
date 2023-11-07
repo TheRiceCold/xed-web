@@ -1,15 +1,17 @@
-import { ReactNode } from 'react'
+import { FC, ReactElement } from 'react'
 import MobileFooter from './MobileFooter'
 import DesktopSidebar from './DesktopSidebar'
 
-const Sidebar = ({ children }: ReactNode) => (
+interface IProps {
+  children: ReactElement
+}
+
+const Sidebar: FC<IProps> = ({ children }) => (
   <div className='h-full'>
     <DesktopSidebar />
     <MobileFooter />
     <main className='lg:pl-16 h-full'>
-      <div className='h-full'>
-        {children}
-      </div>
+      {children}
     </main>
   </div>
 ) 

@@ -1,12 +1,13 @@
-import { FC } from 'react'
-import {
-  Form,
-  Body,
-  Header,
-} from '@/components/chat/conversation'
-import EmptyState from '@/components/chat/EmptyState'
+import type { NextPage } from 'next'
 
-const ConversationId: FC<IProps> = () => {
+import { 
+  Form, 
+  Body, 
+  Header,
+  EmptyState,
+} from '@/components/chat'
+
+const ChatId: NextPage = () => {
   const conversation = {
     id: '32',
     name: 'Conversation name',
@@ -15,7 +16,7 @@ const ConversationId: FC<IProps> = () => {
 
   if (!conversation) {
     return (
-      <div className='lg:pl-80 h-full'>
+      <div className='lg:pl-80 h-screen'>
         <div className='h-full flex flex-col'>
           <EmptyState />
         </div>
@@ -24,14 +25,14 @@ const ConversationId: FC<IProps> = () => {
   }
 
   return (
-    <div className='lg:pl-80 h-full'>
+    <div className='lg:pl-80 h-screen'>
       <div className='h-full flex flex-col'>
         <Header conversation={conversation} />
-        {/* <Body /> */}
+        <Body />
         <Form />
       </div>
     </div>
   )
 }
 
-export default ConversationId
+export default ChatId

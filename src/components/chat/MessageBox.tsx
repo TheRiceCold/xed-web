@@ -1,15 +1,16 @@
 'use client'
 
+import Image from 'next/image'
 import clsx from 'clsx'
 import { format } from 'date-fns'
 
-import ChatAvatar from '@/components/chat/ChatAvatar'
+import {
+  Avatar, 
+  AvatarImage, 
+  AvatarFallback,
+} from '@/components/shadcn-ui'
 
-const MessageBox = ({
-  data,
-  isLast
-}) => {
-
+const MessageBox = ({ data, isLast }) => {
   const isOwn = true
 
   const seenList = (data.seen || [])
@@ -28,14 +29,44 @@ const MessageBox = ({
 
   const message = clsx(
     'text-sm w-fit overflow-hidden',
-    isOwn ? 'bg-sky-500 text-white' : 'bg-gray-100',
-    data.image ? 'rounded-md p-0' : 'rounded-full py-2 px-3'
+    isOwn ? 'bg-black text-white' : 'bg-gray-100',
+    data.image ? 'rounded-md p-0' : 'rounded-lg py-2 px-3'
   )
 
   return (
     <div className={container}>
       <div className={avatar}>
-        <Avatar user={data.sender} />
+        <div className='relative hover:bg-accent cursor-pointer'>
+          <div className="
+            h-9 
+            md:h-11 
+            w-9
+            md:w-11 
+            relative 
+            inline-block 
+            rounded-full
+            overflow-hidden 
+          ">
+            <Avatar>
+              <AvatarImage src='https://github.com/shadcn.png' alt='@wolly' />
+              <AvatarFallback>DW</AvatarFallback>
+            </Avatar>
+          </div>
+          <span className="
+            block 
+            absolute 
+            rounded-full 
+            bg-green-500
+            top-0 
+            right-0
+            h-2 
+            w-2 
+            md:h-3 
+            md:w-3 
+            ring-2 
+            ring-background 
+          "/>
+        </div>
       </div>
       <div className={body}>
         <div className='flex items-center gap-1'>
@@ -78,3 +109,5 @@ const MessageBox = ({
     </div>
   )
 }
+
+export default MessageBox

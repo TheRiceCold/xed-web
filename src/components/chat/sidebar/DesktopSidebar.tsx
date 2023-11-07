@@ -1,81 +1,83 @@
 'use client'
 import { useState } from 'react'
-import { useRoutes } from '@/hooks'
-import { Menu } from 'lucide-react'
-import useConversation from '@/hooks/useConversation'
-import Avatar from '@/components/chat/ChatAvatar'
-import DesktopItem from './DesktopItem'
+import { useRouter, usePathname } from 'next/navigation'
+import { LuMenu } from 'react-icons/lu'
+
+import {
+  Button,
+  Avatar, 
+  AvatarImage, 
+  AvatarFallback,
+} from '@/components/shadcn-ui'
+
+import { useConversation } from '@/hooks'
+import { CHAT_SIDEBAR_ITEMS } from '@/constants/chatSidebarItems'
 
 const DesktopSidebar = () => {
-  const routes = useRoutes()
+  const { conversationId } = useConversation()
   const [isOpen, setIsOpen] = useState(false)
 
+  const router = useRouter()
+  const pathname = usePathname()
+  const [isActive, setIsActive] = useState<boolean>(false)
+
+  const handleClick = (href: string) => {
+    router.push(href)
+    setIsActive(pathname === href)
+  }
+
   return (
-    <div className='
-      hidden
-      lg:fixed
-      lg:inset-y-0
-      lg:left-0
-      lg:z-40
-      xl:px-2
-      lg:overflow-y-auto
-      lg:bg-white
-      lg:border-r-[1px]
-      lg:pb-4
-      lg:flex
-      lg:flex-col
+    <nav className="
+      px-2
+      flex
+      fixed
+      left-0
       justify-between
-    '>
-      <nav className='
+      lg:z-40
+      lg:pb-4
+      lg:flex-col
+      lg:inset-y-0
+      lg:border-r-[1px] 
+      lg:overflow-y-auto
+    ">
+      <div className="
         mt-4
-        flex
-        flex-col
-        justify-between
-      '>
-        <ul role='list' className='flex flex-col items-center space-y-1'>
-          {routes.map(item => (
-            <DesktopItem
-              key={item.label}
-              href={item.href}
-              icon={item.icon}
-              label={item.label}
-              active={item.active}
-              onClick={item.onClick}
-            />
-          ))}
-        </ul>
-      </nav>
-      <nav className="
-        mt-4
-        flex
-        flex-col
-        justify-between
-        items-center
+        flex 
+        flex-col 
+        space-y-2
+        items-center 
       ">
-        <div className="
-          hover:opacity-75 
-          cursor-pointer 
-          transition"
-          onClick={() => setIsOpen(true)}
-        > 
-          <div className="
-            group
-            flex
-            gap-x-3
-            round-md
-            p-3
-            text-sm
-            leading-6
-            font-semibold
-            text-gray-500
-            hover:text-black
-            hover:bg-gray-100" 
+        {CHAT_SIDEBAR_ITEMS.map(({ icon: Icon, href }, idx) => (
+          <Button 
+            variant='ghost'
+            className='p-3' 
+            key={`${href}-${idx}`}
+            onClick={() => handleClick(href)}
           >
-            <Menu />
-          </div>
+            <Icon size={22} />
+          </Button>
+        ))}
+      </div>
+      <Button 
+        size={1}
+        variant='ghost' 
+        className='p-0 rounded-full'
+      >
+        <div className="
+          h-8
+          w-8
+          relative 
+          inline-block 
+          rounded-full
+          overflow-hidden 
+        ">
+          <Avatar>
+            <AvatarImage src='https://github.com/shadcn.png' alt='@wolly' />
+            <AvatarFallback>DW</AvatarFallback>
+          </Avatar>
         </div>
-      </nav>
-    </div>
+      </Button>
+    </nav>
   )
 }
 
