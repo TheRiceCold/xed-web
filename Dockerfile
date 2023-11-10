@@ -8,7 +8,6 @@ RUN bun install
 COPY src ./src
 COPY public ./public
 COPY amplify ./amplify
-COPY amplify ./amplify
 COPY .eslintrc.json next.config.js postcss.config.js tailwind.config.ts tsconfig.json ./
 
 CMD ["bun", "--bun", "run", "dev"]
