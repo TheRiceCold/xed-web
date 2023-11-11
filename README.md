@@ -4,11 +4,9 @@ View live production [here]()
 
 ### Prerequesites using Containerization
 - [Docker](https://docs.docker.com/engine/install/) OR [Podman](https://podman.io/) & [Podman Compose](https://podman.io/) >= 1.0.6
-- [AWS Amplify CLI](https://docs.amplify.aws/cli/start/install) 
 
 ### Prerequesites without Containerization (Docker or Podman)
 - [Bun](https://bun.sh) >= 1.0.7 OR [Pnpm](https://pnpm.io/installation)
-- [AWS Amplify CLI](https://docs.amplify.aws/cli/start/install)
   
 ### Getting Started
 - Clone Repository

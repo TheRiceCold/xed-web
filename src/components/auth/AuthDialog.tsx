@@ -1,76 +1,51 @@
 'use client'
-import { FC, useState, ReactNode } from 'react'
-import { ArrowLeft } from 'lucide-react'
+import { FC, ReactElement, useState } from 'react'
+import { AiOutlineLeft } from 'react-icons/ai'
+
 import {
   Dialog,
   DialogContent,
   DialogTrigger,
 } from '@/components/shadcn-ui'
-
-// Auth State Components
-import Login from './Login'
-import SignUp from './SignUp'
-import ResetPassword from './ResetPassword'
-import EnterLoginPassword from './EnterLoginPassword'
-
-export enum authStateEnum {
-  LOGIN = 'LOGIN',
-  SIGNUP = 'SIGNUP',
-  FORGOT_PASSWORD = 'FORGOT_PASSWORD',
-  ENTER_LOGIN_PASSWORD = 'ENTER_LOGIN_PASSWORD',
-}
+import { authStateEnum } from '.'
+import ContentState from './ContentState'
 
 interface IProps {
-  triggerComponent: ReactNode
+  triggerComponent: ReactElement
 }
 
 const AuthDialog: FC<IProps> = ({ triggerComponent }) => {
-  const [email, setEmail] = useState<string>('')
   const [prevState, setPrevState] = useState<authStateEnum|null>(null)
-  const [currentState, setCurrentState] = useState<authStateEnum>(authStateEnum.LOGIN)
-
-  const changeState = (state: authStateEnum): void => {
-    setPrevState(currentState)
-    setCurrentState(state)
-  }
-
-  const renderState = () => {
-    const props = { changeState };
-
-    switch (currentState) {
-      case authStateEnum.LOGIN:
-        return <Login setEmail={setEmail} {...props} />
-
-      case authStateEnum.SIGNUP: 
-        return <SignUp {...props} />
-
-      case authStateEnum.FORGOT_PASSWORD: 
-        return <ResetPassword {...props} />
-
-      case authStateEnum.ENTER_LOGIN_PASSWORD:
-        return <EnterLoginPassword email={email} {...props} />
-
-      default:
-        return null
-    }
-  }
+  const [currentState, setCurrentState] = useState<authStateEnum>(authStateEnum.LOGIN_EMAIL)
 
   return (
     <Dialog>
+
+      {/* TRIGGER COMPONENT */}
       <DialogTrigger asChild>
         {triggerComponent()}
       </DialogTrigger>
+
+      {/* CONTENT */}
       <DialogContent>
         {prevState && (
           <button
             className='absolute top-2 left-4 w-4 h-4'
             onClick={() => setCurrentState(prevState && prevState)}
           >
-            <ArrowLeft className='absolute w-4 h-4'/>
+            <AiOutlineLeft className='absolute w-4 h-4'/>
           </button>
         )}
-        {renderState()}
+
+        {/* Content State */}
+        <ContentState
+          currentState={currentState}
+          setPrevState={setPrevState}
+          setCurrentState={setCurrentState}
+        />
+
       </DialogContent>
+
     </Dialog>
   )
 }

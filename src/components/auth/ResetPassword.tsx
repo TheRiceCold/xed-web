@@ -7,8 +7,7 @@ import {
   DialogDescription,
   DialogFooter,
 } from '@/components/shadcn-ui'
-import { Eye, EyeOff } from 'lucide-react'
-import { authStateEnum } from './AuthDialog'
+import { authStateEnum } from '.'
 
 interface IProps {
   changeState: (state: authStateEnum) => void
@@ -29,13 +28,7 @@ const ForgotPassword: FC<IProps> = ({ changeState }) => {
         <div className='grid flex-1 gap-4'>
           <Input type='email' placeholder='Email' />
           <Input placeholder='Verify Code' />
-          <div className='flex'>
-            <Input type='password' placeholder='Password' />
-            <Button variant='ghost' className='absolute right-6'>
-              {/* <Eye className='h-4 w-4' /> */}
-              <EyeOff className='h-4 w-4' />
-            </Button>
-          </div>
+          <Input type='password' placeholder='Password' />
         </div>
       </div>
       <DialogFooter>

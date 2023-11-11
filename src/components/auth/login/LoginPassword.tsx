@@ -1,5 +1,5 @@
-import { FC } from 'react'
-import { ArrowRight } from 'lucide-react'
+import { FC, useEffect } from 'react'
+import { AiOutlineRight } from 'react-icons/ai'
 
 import {
   Input,
@@ -8,14 +8,29 @@ import {
   DialogTitle,
   DialogFooter,
 } from '@/components/shadcn-ui'
-import { authStateEnum } from './AuthDialog'
+
+import { PasswordInput } from '@/components/form'
+import { authStateEnum } from '..'
 
 interface IProps {
   email: string
   changeState: (state: authStateEnum) => void
 }
 
-const EnterLoginPassword: FC<IProps> = ({ email, changeState }) => {
+const LoginPassword: FC<IProps> = ({ 
+  hook,
+  email, 
+  changeState, 
+}) => {
+  console.log('Login data: ', hook.watch())
+
+  useEffect(() => {
+    hook.setValue('email', email)
+  }, [])
+
+  const onSubmit = () => {
+
+  }
 
   return (
     <>
@@ -27,15 +42,25 @@ const EnterLoginPassword: FC<IProps> = ({ email, changeState }) => {
       <div className='flex items-center space-x-2'>
         <div className='grid flex-1 gap-4'>
           <Input type='email' placeholder={email} readOnly />
-          <Input type='password' placeholder='Password' />
-          <Button onClick={() => changeState(authStateEnum.ENTER_LOGIN_PASSWORD)}>
+          <PasswordInput 
+            input={{
+              id: 'password',
+              label: 'Password'
+            }}
+            hook={hook}
+          />
+          <Button 
+            className='font-bold'
+            onClick={() => hook.submitHandler(onSubmit)}
+          >
             Log in
-            <ArrowRight className='h-4 w-4 ml-2'/>
+            <AiOutlineRight className='h-4 w-4 ml-2'/>
           </Button>
           <Button 
             variant='link' 
+            className='text-accent-foreground'
             onClick={() => changeState(authStateEnum.FORGOT_PASSWORD)}
-          > Forgot Password?
+          >
           </Button>
         </div>
       </div>
@@ -51,4 +76,4 @@ const EnterLoginPassword: FC<IProps> = ({ email, changeState }) => {
   )
 }
 
-export default EnterLoginPassword
+export default LoginPassword
