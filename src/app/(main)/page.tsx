@@ -5,7 +5,7 @@ import { Feed } from '@/components/feed'
 import { Header, Sidebar } from './_components'
 
 
-const MainPage: NextPage = () => (
+const RootPage: NextPage = () => (
   <>
     <Header/>
     <Sidebar />
@@ -13,4 +13,4 @@ const MainPage: NextPage = () => (
   </>
 )
 
-export default MainPage
+export default RootPage
