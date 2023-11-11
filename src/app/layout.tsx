@@ -1,32 +1,17 @@
-import type { Metadata } from 'next'
-import AppRegistry from './AppRegistry'
+'use client'
 import './globals.css'
 
-export const metadata: Metadata = {
-  title: 'Xed',
-  description: 'Social Media Web App.',
-  icons: {
-    icon: [
-      {
-        media: '{prefers-color-scheme: light}',
-        url: '/logo.svg',
-        href: '/logo.svg'
-      },
-      {
-        media: '{prefers-color-scheme: dark}',
-        url: '/logo-dark.svg',
-        href: '/logo-dark.svg'
-      }
-    ]
-  }
-}
+import { Toaster } from '@/components/shadcn-ui'
 
 const AppLayout = ({ children }: {
-  children: React.ReactNode
+  children: React.ReactElement
 }) => (
-  <html lang='en'>
+  <html lang='en' className='dark'>
     <body>
-      <AppRegistry>{children}</AppRegistry>
+      <main className='w-full'>
+        {children}
+      </main>
+      <Toaster />
     </body>
   </html>
 )
