@@ -21,14 +21,9 @@ git clone https://github.com/kaizen-dw/Xed
 - Setup project with Docker or Podman (Skip if you're not using this tools)
   - Build and Run Image 
   ```
-  docker-compose up --build
+  docker-compose up
   ```
-  OR
-  ```
-  podman-compose up --build
-  ```  
    - Open ``http://localhost:3000``
- 
   
   
 - Setup project with Bun
@@ -38,10 +33,24 @@ git clone https://github.com/kaizen-dw/Xed
   ```
   - Run the project
    ```
-   bun dev
+   bun --bun run dev
    ```
    - Open ``http://localhost:3000``
  
+
+# Available Commands
+
+|     Bun Command      |          Description          |
+| -------------------- | ----------------------------- |
+| bun --bun run dev    | Starts a development instance |
+| bun run build        | Generate application build    |
+| bun i <package-name> | Install a new package         |
+
+| Docker/Podman Command |          Description          |
+| --------------------- | ----------------------------- |
+| docker-compose up     | Starts a development instance |
+| bun run build         | Generate application build    |
+| bun i <package-name>  | Install a new package         |
  
 ### Useful Commands for Debugging
 Run bash inside container
@@ -52,3 +61,8 @@ Execute bash inside container
 ```
 docker-compose exec -it app bash
 ```
+
+# Backend Services
+- [Amazon Cognito]():
+- [AWS AppSync GraphQL]():
+- [Amazon DynamoDB]():
