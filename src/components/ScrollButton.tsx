@@ -5,7 +5,7 @@ import clsx from 'clsx'
 
 import { Button } from './shadcn-ui'
 
-const ScrollTopButton: FC = () => { 
+const ScrollButton: FC = () => { 
   const [visible, setVisible] = useState(false) 
   
   const toggleVisible = () => { 
@@ -35,4 +35,4 @@ const ScrollTopButton: FC = () => {
   )
 } 
   
-export default ScrollTopButton 
+export default ScrollButton 
