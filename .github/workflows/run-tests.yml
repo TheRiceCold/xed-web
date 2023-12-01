@@ -12,4 +12,4 @@ jobs:
       - name: bun install
         run: cd app && bun i
       - name: lint
-        run: bun lint
+        run: cd app && bun lint

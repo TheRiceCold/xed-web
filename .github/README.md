@@ -5,7 +5,7 @@ A Social Media Web App Project. View live production [here]()
 ## Getting Started
 
 ### 1. Clone Repository
-```bash
+```
 git clone https://github.com/kaizen-dw/xed-web
 ```
 
