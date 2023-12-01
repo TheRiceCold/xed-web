@@ -3,13 +3,13 @@ name: Run Tests
 on: [pull_request]
 
 jobs:
-  tests:
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
       - uses: oven-sh/setup-bun@v1
       - name: bun install
-        run: bun i
+        run: cd app && bun i
       - name: lint
         run: bun lint

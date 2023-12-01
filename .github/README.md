@@ -12,6 +12,7 @@ git clone https://github.com/kaizen-dw/xed-web
 ### 2. Choose your setup
 Option 1 Prerequesites: Local Environment Setup
 - [Bun](https://bun.sh) >= 1.0.14
+- [Act](https://github.com/nektos/act) >= 0.2.54
 
 Install and run development server on `http://localhost:3000`
 ```

@@ -12,7 +12,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in {
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [ bun ];
+          buildInputs = with pkgs; [ bun act ];
 
           shellHook = ''
             echo "Packages installed successfully"
