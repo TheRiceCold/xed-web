@@ -11,8 +11,9 @@ import {
   DialogDescription,
 } from '@/components/shadcn-ui'
 
-import Content from './LoginEmailContent'
 import { authStateEnum } from '..'
+
+import Content from './login-email-content'
 
 interface IProps {
   setEmail: Dispatch<SetStateAction<string>>

@@ -41,3 +41,16 @@ Install and run development server on `http://localhost:3000`
 bun i && bun dev
 ```
 <!-- END: Getting Started -->
+
+<!-- BEGIN: Test Commands -->
+## Test Commands
+Test Lint
+```
+bun lint
+```
+
+Test a github action workflow locally
+```
+act -j <job-name>
+```
+<!-- END: Test Commands -->

@@ -1,8 +1,8 @@
-export { default as LoginEmail } from './login/LoginEmail'
-export { default as LoginPassword } from './login/LoginPassword'
+export { default as LoginEmail } from './login/login-email'
+export { default as LoginPassword } from './login/login-password'
 
-export { default as SignUp } from './signup/SignUp'
-export { default as ResetPassword } from './ResetPassword'
+export { default as SignUp } from './signup/sign-up'
+export { default as ResetPassword } from './reset-password'
 
 export enum authStateEnum {
   SIGNUP = 'SIGNUP',

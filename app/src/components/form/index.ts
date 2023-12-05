@@ -1,2 +1,2 @@
-export { default as FormMap } from './FormMap'
-export { default as PasswordInput } from './PasswordInput'
+export { default as FormMap } from './form-map'
+export { default as PasswordInput } from './password-input'

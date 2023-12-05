@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Button } from '@/components/shadcn-ui'
-import EditDialog from './EditDialog'
+
+import EditDialog from './edit-dialog'
 
 const Details: FC = () => {
   const isUser = false 

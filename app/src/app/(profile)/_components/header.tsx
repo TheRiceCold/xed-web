@@ -12,7 +12,7 @@ import {
   TooltipContent,
 } from '@/components/shadcn-ui'
 
-import ProfileDropdown from './ProfileDropdown'
+import ProfileDropdown from './profile-dropdown'
 
 const ProfileHeader: FC = () => {
   const buttons = [

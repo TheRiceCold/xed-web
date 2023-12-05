@@ -9,7 +9,7 @@ import {
   DialogDescription,
 } from '@/components/shadcn-ui'
 
-import SignUpForm from './Form'
+import SignUpForm from './form'
 import { authStateEnum } from '..'
 
 interface IProps {

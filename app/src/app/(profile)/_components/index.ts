@@ -1,4 +1,4 @@
-export { default as Header } from './Header'
-export { default as Content } from './Content'
-export { default as UserPhoto } from './UserPhoto'
-export { default as CoverPhoto } from './CoverPhoto'
+export { default as Header } from './header'
+export { default as Content } from './content'
+export { default as UserPhoto } from './user-photo'
+export { default as CoverPhoto } from './cover-photo'

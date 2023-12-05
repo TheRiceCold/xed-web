@@ -8,8 +8,9 @@ import {
   DialogTrigger,
   DialogContent,
 } from '@/components/shadcn-ui'
-import RepostDialog from '../dialogs/RepostDialog'
-import AuthDialog from '@/components/auth/AuthDialog'
+
+import RepostDialog from '../dialogs/repost-dialog'
+import AuthDialog from '@/components/auth/auth-dialog'
 
 const RepostButton: FC = ({ data }) => {
   const user = {}

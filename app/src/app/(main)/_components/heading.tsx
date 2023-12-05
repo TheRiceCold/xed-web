@@ -3,7 +3,6 @@
 import { Button } from "@/components/shadcn-ui/button"
 import { ArrowRight } from "lucide-react"
 
-
 const Heading = () => {
   return (
     <div className='max-w-3xl space-y-4'>

@@ -1,8 +1,7 @@
 import { FC, ReactElement } from 'react'
 import Link from 'next/link'
-import { LuSearch } from 'react-icons/lu'
 
-import SearchInput from './SearchInput'
+import { LuSearch } from 'react-icons/lu'
 import { 
   Dialog,
   DialogTrigger,
@@ -13,6 +12,8 @@ import {
   
   Input, Button 
 } from './shadcn-ui'
+
+import SearchInput from './search-input'
 
 interface IProps {
   leftContent: ReactElement

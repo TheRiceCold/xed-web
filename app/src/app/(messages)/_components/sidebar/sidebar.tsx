@@ -7,8 +7,8 @@ import {
 } from 'react-icons/lu'
 import { BsBroadcast } from 'react-icons/bs'
 
-import MobileFooter from './MobileFooter'
-import DesktopSidebar from './DesktopSidebar'
+import MobileFooter from './mobile-footer'
+import DesktopSidebar from './desktop-sidebar'
 
 interface IProps {
   children: ReactElement

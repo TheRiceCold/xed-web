@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react'
 
 import { Sidebar } from '../_components'
-import ChatList from './_components/ChatList'
+import ChatList from './_components/chat-list'
 
 interface IProps {
   children: ReactNode

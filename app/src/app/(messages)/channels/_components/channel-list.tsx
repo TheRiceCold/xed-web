@@ -1,16 +1,24 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { LuPenLine } from 'react-icons/lu'
 import clsx from 'clsx'
+import { LuPlus } from 'react-icons/lu'
 
 import { Button } from '@/components/shadcn-ui'
-import { useConversation } from '@/hooks'
-import ChatBox from './ChatBox'
 
-const ChatList: FC = ({
-  initialItems
-}) => {
+import ChannelBox from './channel-box'
+import SearchDialog from './search-dialog'
+import CreateDialog from './create-dialog'
+import { useConversation } from '@/hooks'
+
+interface IProps {
+  initialItems: {
+    id: string,
+    name: string
+  }[]
+}
+
+const ChannelList: FC<IProps> = ({ initialItems }) => {
   const router = useRouter()
   const [items, setItems] = useState(initialItems)
   const { conversationId, isOpen } = useConversation()
@@ -18,14 +26,14 @@ const ChatList: FC = ({
   return (
     <aside className={clsx(`
       fixed
-      inset-y-0
       pb-20
+      inset-y-0
       lg:pb-0
-      lg:left-16
       lg:w-80
       lg:block
-      overflow-y-auto
-      border-r`, 
+      lg:left-16
+      border-r
+      overflow-y-auto`, 
       isOpen ? 'hidden' : 'block w-full left-0'
     )}>
       <div className="
@@ -38,16 +46,21 @@ const ChatList: FC = ({
         items-center 
         justify-between 
       ">
-        <p className='text-lg font-bold'>Messages</p>
-        <Button size={1} variant='outline' className='p-2'>
-          <LuPenLine size={18} />
-        </Button>
+        <p className='text-lg font-bold'>Channels</p>
+        <CreateDialog 
+          triggerComponent={() => (
+            <Button size={1} variant='outline' className='p-2'>
+              <LuPlus size={18} />
+            </Button>
+          )}
+        />
       </div>
+      <SearchDialog />
       {initialItems.map((data, idx) => (
-        <ChatBox key={`${data.id}-${idx}`} data={data} />
+        <ChannelBox key={`${data.id}-${idx}`} data={data} />
       ))}
     </aside>
   )
 }
 
-export default ChatList
+export default ChannelList

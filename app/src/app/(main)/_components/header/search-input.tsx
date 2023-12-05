@@ -1,6 +1,7 @@
 import { FC, useState } from 'react'
 import { Input } from '@/components/shadcn-ui'
-import SearchList from './SearchList'
+
+import SearchList from './search-list'
 
 const SearchInput: FC = () => {
   const [input, setInput] = useState<string>('')

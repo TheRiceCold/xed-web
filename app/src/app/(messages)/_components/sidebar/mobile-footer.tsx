@@ -1,5 +1,5 @@
 'use client'
-import MobileItem from './MobileItem'
+import MobileItem from './mobile-item'
 import { useConversation } from '@/hooks'
 
 const MobileFooter = ({ items }) => {

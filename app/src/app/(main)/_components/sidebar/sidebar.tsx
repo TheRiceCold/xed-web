@@ -1,9 +1,9 @@
 import { FC } from 'react'
 
-import SidebarItem from './SidebarItem'
-import SubNavItem from '@/types/sideNavItem'
+import SidebarItem from './sidebar-item'
+import SubNavItem from '@/types/side-nav-item'
 
-import { SIDEBAR_ITEMS } from '@/constants/sidebarItems'
+import { SIDEBAR_ITEMS } from '@/constants/sidebar-items'
 
 const Sidebar: FC = () => (
   <aside className="

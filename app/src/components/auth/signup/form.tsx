@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { FormMap } from '@/components/form'
 
 import { useToast } from '@/hooks'
-import { signUpFields } from '@/constants/inputFields'
+import { signUpFields } from '@/constants/input-fields'
 
 type TInputs = {
   email: string

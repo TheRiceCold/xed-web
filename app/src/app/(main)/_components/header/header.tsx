@@ -1,9 +1,9 @@
 import { FC, useRef } from 'react'
 import { Button } from '@/components/shadcn-ui'
 
-import MoreMenu from './MoreMenu'
-import GetAppDialog from '../GetAppDialog'
-import AuthDialog from '@/components/auth/AuthDialog'
+import MoreMenu from './more-menu'
+import GetAppDialog from '../get-app-dialog'
+import AuthDialog from '@/components/auth/auth-dialog'
 
 import { Header } from '@/components'
 

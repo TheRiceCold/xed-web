@@ -1,2 +1,2 @@
 export { useToast } from './use-toast'
-export { useConversation } from './useConversation'
+export { useConversation } from './use-conversation'

@@ -4,8 +4,8 @@ import { UseFormReturn } from 'react-hook-form'
 
 import { Button } from '@/components/shadcn-ui'
 
-import MultiForm from './MultiForm'
-import SingleForm from './SingleForm'
+import MultiForm from './multi-form'
+import SingleForm from './single-form'
 
 interface IProps {
   hook: UseFormReturn<{

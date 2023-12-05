@@ -7,7 +7,7 @@ import {
   AvatarImage, 
   AvatarFallback,
 } from '@/components/shadcn-ui'
-import OptionsMenu from './OptionsMenu'
+import OptionsMenu from './options-menu'
 
 const PostContent: FC = ({ data }) => {
   const [isReply, setIsReply] = useState<boolean>(false)

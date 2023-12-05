@@ -1,23 +1,20 @@
+'use client'
 import { FC, useState } from 'react'
-
-import { Button } from '@/components/shadcn-ui'
-
-import Post from '@/components/feed/Post'
-import CreatePost from './CreatePost'
-import Details from './Details'
-
+import Link from 'next/link'
+import Post from './post'
 import { 
   appleAppStore, 
   googlePlayStore, 
 } from '@/constants/images'
+import { Button } from '@/components/shadcn-ui'
 
-const Content: FC = () => {
+const Feed: FC = ({ data, id }) => {
   const [posts, setPosts] = useState([
     {
       id: '1234',
       data: {
-        name: 'Name 1',
-        username: 'Username 1',
+        name: 'Wolly',
+        username: 'kaizen_dw',
         text: `
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mauris diam, mollis et quam nec, placerat ornare nisl. In non porta turpis. 
           Aliquam congue erat et nisi suscipit, sit amet porttitor mi dignissim. Aenean eleifend sodales massa vitae dictum. Ut ligula nisl, 
@@ -49,34 +46,43 @@ const Content: FC = () => {
     },
   ])
 
+  const hashtags: Array<string> = [
+    'xed', 'ufc295', 'nba2k',
+    'halloween', 'november', 'elonmusk',
+    'nextjs', 'mongodb', 'rubyonrails',
+    'philippines', 'flutter', 'hunterxhunter',
+    'github', 'flutter', 'berserk',
+  ]
+
   return (
-    <div className="
-      z-5
-      top-72
-      left-0
-      right-0
-      ml-auto
-      mr-auto
-      w-[90%]
-      absolute
-      flex-col 
-      shadow-xl
-      rounded-xl
-      bg-accent/30
-      backdrop-blur-2xl
-    ">
-      <Details />
-      <hr className='my-4' />
-      <div className='flex justify-center'>
-        <div className='w-2/5'>
-          <CreatePost />
-          {posts.map(post => (
-            <Post key={post.id} id={post.id} data={post.data} />
-          ))}
-        </div>
+    <div className='w-full md:pl-64 mt-[50px]'>
+      <div className="
+        flex 
+        px-8
+        py-2
+        border 
+        space-x-4
+        items-center 
+        no-scrollbar
+        overflow-auto
+      ">
+        {hashtags.map((tag, idx) => (
+          <Button 
+            asChild
+            key={`${tag}-${idx}`} 
+            className='bg-accent rounded-full'
+          > 
+            <Link href={`hashtag?query=${tag}`}>
+              #{tag}
+            </Link>
+          </Button>
+        ))}
       </div>
+      {posts.map(post => (
+        <Post key={post.id} id={post.id} data={post.data} />
+      ))}
     </div>
   )
 }
 
-export default Content
+export default Feed

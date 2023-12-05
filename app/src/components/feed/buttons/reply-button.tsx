@@ -7,8 +7,8 @@ import {
   DialogTrigger,
   DialogContent,
 } from '@/components/shadcn-ui'
-import ThreadDialog from '../dialogs/ThreadDialog'
-import AuthDialog from '@/components/auth/AuthDialog'
+import ThreadDialog from '../dialogs/thread-dialog'
+import AuthDialog from '@/components/auth/auth-dialog'
 
 const ReplyButton: FC = ({ data }) => {
   const user = {}

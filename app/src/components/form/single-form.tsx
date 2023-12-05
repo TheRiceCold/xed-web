@@ -2,9 +2,9 @@ import { FC } from 'react'
 
 import { Separator } from '@/components/shadcn-ui'
 
-import Input from './Input'
-import RadioGroup from './RadioInput'
-import DateSelect from './date-select/DateSelect'
+import Input from './input'
+import RadioGroup from './radio-input'
+import DateSelect from './date-select/date-select'
 
 const Form: FC = ({ hook, inputs }) => inputs.map(
   (input, idx: number) => (!!input.id) ? (

@@ -6,7 +6,7 @@ import {
 } from 'react-icons/ai'
 
 import { Button } from '@/components/shadcn-ui'
-import AuthDialog from '@/components/auth/AuthDialog'
+import AuthDialog from '@/components/auth/auth-dialog'
 
 const SaveButton: FC = ({ data }) => {
   const user = null

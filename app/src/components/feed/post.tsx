@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import PostContent from './PostContent'
+import PostContent from './post-content'
 
 import { 
   LikeButton,

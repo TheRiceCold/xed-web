@@ -7,8 +7,10 @@ import {
   DialogContent,
   DialogTrigger,
 } from '@/components/shadcn-ui'
+
 import { authStateEnum } from '.'
-import ContentState from './ContentState'
+
+import ContentState from './content-state'
 
 interface IProps {
   triggerComponent: ReactElement

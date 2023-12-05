@@ -7,7 +7,7 @@ import {
 } from 'react'
 import { appleAppStore } from '@/constants/images'
 
-import MessageBox from './MessageBox'
+import MessageBox from './message-box'
 
 const Body: FC = () => {
   const [messages, setMessages] = useState([

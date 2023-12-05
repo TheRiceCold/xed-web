@@ -3,7 +3,7 @@ import { AiOutlineRight } from 'react-icons/ai'
 
 import { Input, Button } from '@/components/shadcn-ui'
 
-import OAuthButtons from './OAuthButtons'
+import OAuthButtons from './oauth-buttons'
 
 import { authStateEnum } from '..'
 
